@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
-import 'package:animated_widgets/animated_widgets.dart';
+
 class participants extends StatefulWidget {
   @override
   _participantsState createState() => _participantsState();
@@ -95,9 +94,9 @@ class _playersState extends State<players> {
 
   Widget list() {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance
+      stream: FirebaseFirestore.instance
           .collection('Participants')
-          .document('event')
+          .doc('event')
           .collection(value)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -110,7 +109,7 @@ class _playersState extends State<players> {
             return new ListView(
               scrollDirection: Axis.vertical,
               children:
-                  snapshot.data.documents.map((DocumentSnapshot document) {
+                  snapshot.data.docs.map((DocumentSnapshot document) {
                 return Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: Card(

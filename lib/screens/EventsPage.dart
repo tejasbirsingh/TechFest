@@ -52,7 +52,8 @@ class _EventsPageState extends State<EventsPage> with TickerProviderStateMixin {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [firstColor.withOpacity(0.1), secondColor])),
+                  colors: [firstColor.withOpacity(0.1), secondColor])
+                  ),
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
@@ -252,8 +253,8 @@ class _EventsPageState extends State<EventsPage> with TickerProviderStateMixin {
 
     if (queryResultSet.length == 0 && value.length == 1) {
       SearchService().searchByName(value).then((QuerySnapshot docs) {
-        for (int i = 0; i < docs.documents.length; ++i) {
-          queryResultSet.add(docs.documents[i].data);
+        for (int i = 0; i < docs.docs.length; ++i) {
+          queryResultSet.add(docs.docs[i].data);
         }
       });
     } else {
@@ -529,7 +530,7 @@ class EventsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('Day 1').snapshots(),
+      stream: FirebaseFirestore.instance.collection('Day 1').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError)
           return Center(child: new Text('Error: ${snapshot.error}'));
@@ -539,7 +540,7 @@ class EventsList extends StatelessWidget {
           default:
             return new ListView(
               children:
-                  snapshot.data.documents.map((DocumentSnapshot document) {
+                  snapshot.data.docs.map((DocumentSnapshot document) {
                 return new ListTile(
                   trailing: GestureDetector(
                     onTap: () {
@@ -603,7 +604,7 @@ class Events1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('Day 2').snapshots(),
+      stream: FirebaseFirestore.instance.collection('Day 2').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError)
           return Center(child: new Text('Error: ${snapshot.error}'));
@@ -614,7 +615,7 @@ class Events1 extends StatelessWidget {
             return new ListView(
               scrollDirection: Axis.vertical,
               children:
-                  snapshot.data.documents.map((DocumentSnapshot document) {
+                  snapshot.data.docs.map((DocumentSnapshot document) {
                 return new ListTile(
                   trailing: GestureDetector(
                     onTap: () {

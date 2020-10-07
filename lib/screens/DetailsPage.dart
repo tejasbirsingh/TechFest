@@ -70,7 +70,7 @@ class _addDetailsState extends State<addDetails> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Map<String, String> register = {};
-  static const color = const Color(0xFF8E24AA);
+  // static const color = const Color(0xFF8E24AA);
 
   @override
   Widget build(BuildContext context) {

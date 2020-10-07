@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'file:///E:/IdeaProjects/techfest/lib/screens/eventRegister.dart';
-
-import 'package:flutter/services.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
+import 'file:///E:/IdeaProjects/techfest/lib/screens/eventRegister.dart';
 
 class AddEvents extends StatefulWidget {
   final String branch;
@@ -62,6 +61,7 @@ class _AddEventsState extends State<AddEvents> {
 
   @override
   void initState() {
+    super.initState();
     titleController.text = "";
     rulesController.text = "";
     descController.text = "";
@@ -72,7 +72,7 @@ class _AddEventsState extends State<AddEvents> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Map<String, String> register = {};
-  static const color = const Color(0xFF8E24AA);
+  // static const color = const Color(0xFF8E24AA);
   var a = 1;
   String _radioValue;
   String choice;
@@ -259,21 +259,21 @@ class _AddEventsState extends State<AddEvents> {
                                           titleController.text[0].toUpperCase()
                                     };
 
-                                    Firestore.instance
+                                    FirebaseFirestore.instance
                                         .collection(widget.branch)
                                         .add(register)
                                         .catchError((e) {
                                       print(e);
                                     });
 
-                                    Firestore.instance
+                                    FirebaseFirestore.instance
                                         .collection(day)
                                         .add(register)
                                         .catchError((e) {
                                       print(e);
                                     });
 
-                                    Firestore.instance
+                                    FirebaseFirestore.instance
                                         .collection('Events')
                                         .add(register)
                                         .catchError((e) {

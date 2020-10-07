@@ -9,9 +9,9 @@ class crudMethod {
   static get auth => null;
 
   Future<void> addData(name, event) async {
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection('Participants')
-        .document('event')
+        .doc('event')
         .collection(event)
         .add(name)
         .catchError((e) {

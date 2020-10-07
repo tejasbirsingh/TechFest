@@ -25,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
+    super.initState();
     getCredential();
   }
 
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
-        AuthResult user = await FirebaseAuth.instance
+        UserCredential user = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
                 email: _email.trim(), password: _password);
 
@@ -248,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setBool('check', checked);
       prefs.setString('email', email.text);
       prefs.setString('password', password.text);
-      prefs.commit();
+    
     });
   }
 

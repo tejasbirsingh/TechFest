@@ -1,11 +1,15 @@
 
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:techfest/screens/EventsPage.dart';
 import 'package:techfest/startupScreens/SplashScreen.dart';
 
-void main() => runApp(MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());}
 
 class MyApp extends StatelessWidget {
   @override

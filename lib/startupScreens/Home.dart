@@ -1,6 +1,7 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'file:///E:/IdeaProjects/techfest/lib/screens/AddEventsScreen.dart';
+import 'package:techfest/screens/AddEventsScreen.dart';
+
 
 import '../search/serviceFile.dart';
 

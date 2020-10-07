@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+
 import 'file:///E:/IdeaProjects/techfest/lib/screens/DetailsPage.dart';
 
 class ShowEvents extends StatefulWidget {
@@ -87,7 +88,7 @@ class Events1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection(branchName).snapshots(),
+      stream: FirebaseFirestore.instance.collection(branchName).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError)
           return Center(child: new Text('Error: ${snapshot.error}'));
@@ -102,10 +103,10 @@ class Events1 extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children:
-                snapshot.data.documents.map((DocumentSnapshot document) {
+                    snapshot.data.docs.map((DocumentSnapshot document) {
                   return Padding(
                     padding:
-                    const EdgeInsets.only(left: 8.0, right: 8.0, top: 2.0),
+                        const EdgeInsets.only(left: 8.0, right: 8.0, top: 2.0),
                     child: Card(
                       color: Colors.white,
                       child: new ListTile(
@@ -115,11 +116,10 @@ class Events1 extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => addDetails(
-                                      event: document['title'],
-                                      rules: document['rules'],
-                                    )));
+                                          event: document['title'],
+                                          rules: document['rules'],
+                                        )));
                           },
-
                           child: Icon(
                             Icons.add,
                             color: Colors.black,
